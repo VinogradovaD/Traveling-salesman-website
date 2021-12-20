@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="nav wrapper-row">
+                <a href="#" class="nav-text" id="main-page-btn">О задаче</a>
+                <a href="#" class="nav-text" id="methods-page-btn">Методы решения</a>
+                <a href="#" class="nav-text" id="solve-page-btn">Решить онлайн</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container wrapper-row">
+            <div class="about-text">
+                <h1>
+                    Что такое<br>
+                    «задача коммивояжёра»?
+                </h1>
+                <p>
+                    В 19-м и 20-м веке по городам ездили коммивояжеры и предлагали людям купить
+                    разные товары. Тактика была такой: коммивояжёр приезжал в город, обходил большинство домов и
+                    отправлялся в следующий город. 
+                    Чем больше городов посетит коммивояжёр, тем больше домов он сможет обойти и больше заработать с
+                    продаж. Таким образом, классическая задача коммивояжёра звучит так:
+                </p>
+                <p>
+                    “как найти самый короткий маршрут между городами, чтобы побыть в каждом хотя бы по одному разу и
+                    вернуться домой.”
+                </p>
+            </div>
+            <img src="img/map.jpg" alt="map" class="map-img">
+        </div>
+    </section>
+
+    <section id="methods">
+        <div class="container">
+
+            <div class="method">
+                <h2>Метод полного перебора</h2>
+                <div class="wrapper-row">
+                    <img class="method-img img-left" src="img/img1.png" alt="">
+                    <div class="method-text  align-right">
+                        <p>
+                            Метод заключается в том, что мы перебираем все возможные комбинации и выбираем оптимальный вариант. Решение точное, но не самое быстрое. Например, если городов будет больше 66, то компьютеру понадобится несколько миллиардов лет, чтобы найти правильный ответ.
+                        </p>
+                        <button>Решить онлайн</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="method">
+                <h2>Метод ближайшего соседа</h2>
+                <div class="wrapper-row">
+                    <div class="method-text align-left">
+                        <p>
+                            Пункты обхода плана последовательно включаются в маршрут, причем каждый очередной включаемый пункт должен быть ближайшим к последнему выбранному пункту среди всех остальных, ещё не включенных в состав маршрута.
+                        </p>
+                        <button>Решить онлайн</button>
+                    </div>
+                    <img class="method-img img-right" src="img/img2.png" alt="">
+                </div>
+            </div>
+
+            <div class="method">
+                <h2>Усовершенствованный метод ближайшего соседа</h2>
+                <div class="wrapper-row">
+                    <img class="method-img img-left" src="img/img3.png" alt="">
+                    <div class="method-text  align-right">
+                        <p>
+                            Метод заключается в том, что мы перебираем все возможные комбинации и выбираем оптимальный вариант. Решение точное, но не самое быстрое. Например, если городов будет больше 66, то компьютеру понадобится несколько миллиардов лет, чтобы найти правильный ответ.
+                        </p>
+                        <button>Решить онлайн</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="method">
+                <h2>Метод ветвей и границ</h2>
+                <div class="wrapper-row">
+                    <div class="method-text align-left">
+                        <p>
+                            Метод заключается в том, что мы перебираем все возможные комбинации и выбираем оптимальный вариант. Решение точное, но не самое быстрое. Например, если городов будет больше 66, то компьютеру понадобится несколько миллиардов лет, чтобы найти правильный ответ.
+                        </p>
+                        <button>Решить онлайн</button>
+                    </div>
+                    <img class="method-img img-right" src="img/img4.png" alt="">
+                </div>
+            </div>
+
+      </div>
+    </section>
+
+    <section id="task" class="hidden">  
+        <div class="task-form wrapper-row">
+            <canvas id="canvas"width="420" height="420" ></canvas>
+            <div class="data">
+                <div class="wrapper-row city-amount">
+                    <p>Количество городов:</p>
+                    <input type="number" id="city-count"/>
+                </div>
+                <div class="choose-method wrapper-row">
+                    <p>Метод</p>
+                    <select name="" id="select-method">
+                        <option value="полного перебора">полного перебора</option>
+                        <option value="ближайшего соседа">ближайшего соседа</option>
+                        <option value="ближайшего соседа (усов.)">ближайшего соседа (усов.)</option>
+                        <option value="ветвей и границ">ветвей и грани</option>
+                    </select>
+                </div>
+                <p id="error-message"></p>
+                <p>Матрица расстояний:</p>
+                <form action="">
+                    <div id="matrix-inputs"></div>
+                    <button id="btn-answer">Посчитать</button>
+                </form>
+                
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
