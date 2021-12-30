@@ -7,13 +7,17 @@ body {
     padding-bottom: 100px;
 }
 
-a, h1, h2, p{
+a, h1, h2, h3, p{
     font-family: 'Montserrat', sans-serif;
     color: black;
 }
 
 a {
     font-size: 14px;
+}
+
+a:hover {
+    color: red;
 }
 
 h1 {
@@ -28,6 +32,7 @@ h2 {
 
 p {
     font-size: 16px;
+    font-weight: 300;
 }
 
 body {
@@ -54,12 +59,16 @@ body {
 }
 
 #about {
-    margin-top: 100px;
+    margin-top: 80px;
     margin-bottom: 100px;
 }
 
+.about-text {
+    margin-top: 70px;
+}
+
 .about-text p {
-    width: 450px;
+    width: 400px;
     margin-top: 25px;
     color: #6D6B6B;
 }
@@ -71,30 +80,50 @@ body {
     margin-top: 20px;
 }
 
+#methods {
+    margin-top: 100px;
+}
+
 .method {
     padding-top: 48px;
-    width: 90%;
-    height: 400px;
+    width: 85%;
+    padding-bottom: 20px;
     margin: 0 auto;
     margin-top: 50px;
     background: white;
     border-radius: 30px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.main-page-method {
+    text-align: center;
+    width: 200px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    padding-top: 15px;
+    padding-bottom: 20px;
+    justify-content: space-between;
+}
+
+.main-page-method img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.main-page-method h3 {
+    font-size: 14px;
+    width: 160px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    font-weight: 300;
 }
 
 .method-img {
-    width: 300px;
-    border-radius: 300px;
+    width: 240px;
     margin-top: 20px;
     margin-bottom: 50px;
-}
-
-.img-left {
-    margin-left: 20px;
-}
-
-.img-right {
-    margin-right: 20px;
+    margin-left: 20px;  
 }
 
 .method p {
@@ -108,13 +137,7 @@ body {
     padding-right: 40px;
 }
 
-.align-left {
-    text-align: left;
-    padding-left: 40px;
-}
-
-.method button {
-
+button {
     width: 160px;
     padding: 10px 0;
     border: none;
@@ -122,7 +145,7 @@ body {
     background: #9ACCD5;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 }
 
 .hidden {
@@ -131,8 +154,12 @@ body {
 
 .task-form {
     width: 800px;
+    width: 800px;
+    background-color: white;
+    border-radius: 20px;
     margin: 0 auto;
-    margin-top: 70px;
+    padding: 50px;
+    margin-top: 60px;
 }
 
 #canvas {
@@ -187,7 +214,6 @@ input::-webkit-inner-spin-button {
 #matrix-inputs div {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
 }
 
 #matrix-inputs input {
@@ -195,3 +221,173 @@ input::-webkit-inner-spin-button {
     margin: 3px;
 }
 
+#btn-answer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.blue-input {
+    background-color: #9ACCD5;
+}
+
+.red-text {
+    color: red;
+}
+
+@media screen and (max-width: 1200px) {
+    .container{
+        width: 800px;
+    }
+    .map-img {
+        width: 300px;
+        height: 300px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    .main-page-method img {
+        width: 100px;
+    }
+    .main-page-method {
+        width: 190px;
+    }
+    .method p {
+        width: 400px;
+        margin-top: 30px;
+    }
+    .method-img {
+        width: 200px;
+    }
+    button {
+        width: 130px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container{
+        width: 600px;
+    }
+    .map-img {
+        width: 200px;
+        height: 200px;
+    }
+    h1 {
+        font-size: 25px;
+    }
+    .main-page-method h3 {
+        font-size: 10px;
+        width: 110px;
+    }
+    .main-page-method {
+        width: 190px;
+    }
+    .nav a{
+        font-size: 12px;
+    }
+    #about {
+        margin-top: 50px;
+    }
+    .about-text {
+        margin-top: 50px;
+    }
+    .about-text p {
+        font-size: 12px;
+    }
+    .main-page-method {
+        width: 140px;
+    }
+    .main-page-method img {
+        width: 80px;
+    }
+    button {
+        width: 100px;
+    }
+    .method{
+        width: 100%;
+        padding-top: 35px;
+    }
+    .method p {
+        font-size: 14px;
+        width: 340px;
+    }
+    .method-img {
+        width: 170px;
+    }
+
+}
+
+ 
+@media screen and (max-width: 768px) {
+    .container {
+        width: 500px;
+    }
+    .wrapper-row {
+        flex-direction: column;
+    }
+    .nav {
+        flex-direction: row;
+    }
+    #about {
+        margin-bottom: 30px;
+    }
+    .about-text, .map-img, .main-page-method, .method-img,  .method p, .method button {
+        margin: 0 auto;
+    }
+    .map-img {
+        margin-top: 20px;
+    }
+    .method {
+        text-align: center;
+    }
+    .align-right {
+        padding-right: 0;
+        text-align: center;
+    }
+    .method-img {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .method p {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .main-page-method {
+        margin-bottom: 10px;
+        width: 200px;
+    }
+    .main-page-method h3 {
+        font-size: 14px;
+        width: 150px;
+    }
+    button {
+        width: 140px;
+    }
+}
+ 
+@media screen and (max-width: 576px) {
+    .container, .about-text p {
+        width: 300px;
+    }
+    h1 {
+        font-size: 22px;
+    }
+    .method {
+        width: 95%;
+    }
+    .method p {
+        font-size: 12px;
+        width: 280px;
+    }
+    .method-img {
+        width: 150px;
+    }
+    h2 {
+        font-size: 15px;
+    }
+    #methods {
+        margin-top: 0;
+    }
+}
