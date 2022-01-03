@@ -9,7 +9,7 @@
 * JavaScript
 * Arbor js
 
-<img src="https://github.com/VinogradovaD/traveling-salesman-problem/blob/main/screenshots/main.png" wight="200">
-<img src="https://github.com/VinogradovaD/traveling-salesman-problem/blob/main/screenshots/methods.png" wight="200">
-<img src="https://github.com/VinogradovaD/traveling-salesman-problem/blob/main/screenshots/task.png" wight="200">
-<img src="https://github.com/VinogradovaD/traveling-salesman-problem/blob/main/screenshots/graph.png" wight="200">
+<img src="https://github.com/VinogradovaD/Traveling-salesman-website/blob/main/screenshots/main.png" width="700">
+<img src="https://github.com/VinogradovaD/Traveling-salesman-website/blob/main/screenshots/methods.png" width="700">
+<img src="https://github.com/VinogradovaD/Traveling-salesman-website/blob/main/screenshots/task.png" width="700">
+<img src="https://github.com/VinogradovaD/Traveling-salesman-website/blob/main/screenshots/graph.png" width="700">
