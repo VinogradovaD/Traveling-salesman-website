@@ -26,12 +26,12 @@ h1 {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
 }
 
 p {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 300;
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .container {
-    width: 900px;
+    width: 850px;
     margin: 0 auto;
 }
 
@@ -74,25 +74,9 @@ body {
 }
 
 .map-img {
-    width: 400px;
-    height: 400px;
+    width: 350px;
     border-radius: 300px;
     margin-top: 20px;
-}
-
-#methods {
-    margin-top: 100px;
-}
-
-.method {
-    padding-top: 48px;
-    width: 85%;
-    padding-bottom: 20px;
-    margin: 0 auto;
-    margin-top: 50px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .main-page-method {
@@ -100,7 +84,7 @@ body {
     width: 200px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
     padding-top: 15px;
     padding-bottom: 20px;
     justify-content: space-between;
@@ -111,30 +95,13 @@ body {
     margin-bottom: 20px;
 }
 
+
 .main-page-method h3 {
     font-size: 14px;
     width: 160px;
     margin: 0 auto;
     margin-bottom: 25px;
     font-weight: 300;
-}
-
-.method-img {
-    width: 240px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    margin-left: 20px;  
-}
-
-.method p {
-    margin-top: 50px;
-    margin-bottom: 20px;
-    width: 450px;
-}
-
-.align-right {
-    text-align: right;
-    padding-right: 40px;
 }
 
 button {
@@ -148,6 +115,64 @@ button {
     cursor: pointer;
 }
 
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover::after {
+    transform: scaleX(1) scaleY(1.6);
+    opacity: 0;
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+#methods {
+    margin-top: 80px;
+}
+
+.method {
+    padding: 48px 40px 25px 40px;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 50px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.10);
+}
+
+.method-img {
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.method p {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 430px;
+}
+
+.align-right {
+    text-align: right;
+}
+
 .hidden {
     display: none;
 }
@@ -156,10 +181,11 @@ button {
     width: 800px;
     width: 800px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 15px;
     margin: 0 auto;
     padding: 50px;
     margin-top: 60px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.10);
 }
 
 #canvas {
