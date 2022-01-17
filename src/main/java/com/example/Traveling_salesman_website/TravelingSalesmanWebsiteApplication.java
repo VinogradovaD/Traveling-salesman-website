@@ -1,4 +1,4 @@
-package com.example.Traveling_salesman_website;
+package com.example.traveling_salesman_website;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

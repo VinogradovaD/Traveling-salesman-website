@@ -1,4 +1,4 @@
-package com.example.Traveling_salesman_website;
+package com.example.traveling_salesman_website;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
