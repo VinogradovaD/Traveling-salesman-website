@@ -336,7 +336,7 @@ function getAnswer() {
                 break;
         }
         drawGraph();
-        resultField.innerHTML = "Маршрут: " + result.pathString + "<br> Длина маршрута: " + result.distance;
+        resultField.innerHTML = `${"Маршрут:"} ${result.pathString}${"<br> Длина маршрута:"} ${result.distance}`;
     }
 }
 
