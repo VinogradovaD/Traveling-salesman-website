@@ -336,7 +336,7 @@ function getAnswer() {
                 break;
         }
         drawGraph();
-        resultField.innerHTML = `${"Маршрут:"} ${result.pathString}${"<br> Длина маршрута:"} ${result.distance}`;
+        resultField.innerHTML = `Маршрут: ${result.pathString} <br> Длина маршрута: ${result.distance}`;
     }
 }
 
@@ -373,15 +373,16 @@ function createMatrixInputs() {
 
     matrixCountElements = cityCount;
 
-    if (cityCount == '') {
+    if (!cityCount) {
         matrixInputs.innerHTML = '';
     }
-
-    if (cityCount < 3 && cityCount != '') {
+    if (cityCount < 3) {
         errorMessage.innerHTML = "Количество городов не может быть меньше 3";
-    } else if (cityCount > 30) {
+    } 
+    if (cityCount > 30) {
         errorMessage.innerHTML = "Количество городов не должно превышать 20";
-    } else {
+    } 
+    if (cityCount && cityCount >= 3 && cityCount <= 30) {
         errorMessage.innerHTML = "";
 
         for (let i = 0; i < cityCount; i++) {
