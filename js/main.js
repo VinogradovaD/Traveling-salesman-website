@@ -275,13 +275,13 @@ function getAnswer() {
     errorMessage.innerHTML = "";
 
     switch (selectMethod.value) {
-      case 'полного перебора':
+      case '1':
         result = bruteForce(matrix);
         break;
-      case 'ближайшего соседа':
+      case '2':
         result = nearestNeighbor(matrix);
         break;
-      case 'ближайшего соседа (усов.)':
+      case '3':
         result = nearestNeighbor2(matrix);
         break;
     }
@@ -360,24 +360,6 @@ function createMatrixInputs() {
 function cleanForm() {
 }
 
-function setSelectMethod(numOfMethod) {
-
-  switch (numOfMethod) {
-    case '1':
-      selectMethod.value = 'полного перебора';
-      break;
-    case '2':
-      selectMethod.value = 'ближайшего соседа';
-      break;
-    case '3':
-      selectMethod.value = 'ближайшего соседа (усов.)';
-      break;
-    case '4':
-      selectMethod.value = 'ветвей и границ';
-      break;
-  }
-}
-
 function taskPage() {
   aboutSection.classList.add('hidden');
   methodsSection.classList.add('hidden');
@@ -417,7 +399,6 @@ btnClean.addEventListener('click', cleanForm);
 useMethodBtns.forEach((item) => {
   item.addEventListener('click', e => {
     taskPage(e);
-    const dataAttribute = e.target.dataset.method;
-    setSelectMethod(dataAttribute);
+    selectMethod.value = e.target.dataset.method;
   });
 }); 
