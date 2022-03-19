@@ -1,3 +1,4 @@
+import * as $ from 'jquery'
 import "./bruteForce.js"
 import "./arbor.js"
 import "./nearestNeighbor.js"

@@ -1,0 +1,37 @@
+{
+  "name": "traveling-salesman-website",
+  "version": "1.0.0",
+  "description": "Website for solving and visualizing the traveling salesman problem.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VinogradovaD/Traveling-salesman-website.git"
+  },
+  "author": "Darina Vinogradova <darinograd@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VinogradovaD/Traveling-salesman-website/issues"
+  },
+  "homepage": "https://github.com/VinogradovaD/Traveling-salesman-website#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "install": "^0.13.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "node-sass": "^7.0.1",
+    "sass-loader": "^12.6.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}
