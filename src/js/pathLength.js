@@ -13,3 +13,5 @@ function pathLength(path, distanceMatrix) {
 
   return length;
 }
+
+export default pathLength

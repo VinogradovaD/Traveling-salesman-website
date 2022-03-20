@@ -1,4 +1,4 @@
-import "./pathLength.js"
+import pathLength from "./pathLength.js"
 
 /* Метод полного перебора (bruteForce)
 
@@ -50,3 +50,5 @@ function allCombinations(n) {
   run(0);
   return result;
 }
+
+export default bruteForce

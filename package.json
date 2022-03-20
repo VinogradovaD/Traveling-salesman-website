@@ -21,6 +21,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.4",
+    "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "install": "^0.13.0",
@@ -32,6 +33,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "arbor": "^0.8.2",
     "jquery": "^3.6.0"
   }
 }

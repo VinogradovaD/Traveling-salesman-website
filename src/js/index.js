@@ -1,7 +1,7 @@
 import * as $ from 'jquery'
-import "./bruteForce.js"
-import "./arbor.js"
-import "./nearestNeighbor.js"
+import bruteForce from "./bruteForce.js"
+import {nearestNeighbor, nearestNeighbor2 } from "./nearestNeighbor.js";
+import '../styles/style.sass'
 
 const mainSection = document.querySelector('.main-page');
 const methodsSection = document.querySelector('.methods');

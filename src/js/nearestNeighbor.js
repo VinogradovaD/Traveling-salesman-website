@@ -1,4 +1,4 @@
-import "./pathLength.js"
+import pathLength from "./pathLength.js"
 
 /* Метод ближайшего соседа (nearestNeighbor)
 
@@ -64,3 +64,5 @@ function nearestNeighbor2(distanceMatrix) {
 
   return { path: bestPath, distance: minDistance, time: end - start };
 }
+
+export {nearestNeighbor, nearestNeighbor2}
