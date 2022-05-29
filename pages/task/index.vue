@@ -5,8 +5,10 @@
       <form class="task__form-data" @submit.prevent="">
         <div class="task__form-city-amount">
           <label>Количество городов:
-            <input v-model="cityAmount" type="number" min="3" max="20" />
+            <input @click="textareaIsVisible = false" v-model="cityAmount" type="number" min="3" max="20" />
           </label>
+          <p>или&nbsp</p>
+          <a v-on:click="textareaIsVisible = true"> Загрузить файл</a>
         </div>
         <div class="task__form-method">
           <select v-model="selectedMethod">
@@ -21,17 +23,21 @@
         <div class="task__form-matrix">
           <p>Матрица расстояний:</p>
           <inputs-block 
-            v-if="(cityAmount > 2)" 
+            v-if="(cityAmount > 2 & !textareaIsVisible)" 
             :cityAmount="cityAmount" 
             :matrix="matrix"
           />
+          <textarea 
+            v-if="textareaIsVisible" 
+            v-model="textareaText"
+            placeholder="Вставьте скопированные данные из файла" />
         </div>
         <div class="task__form-buttons">
-          <v-button v-on:click-btn="getAnswer">Посчитать</v-button>
-          <v-button class="task__form-btn-clear">Очистить</v-button>
+          <v-button @click-btn="getAnswer">Посчитать</v-button>
+          <v-button class="task__form-btn-clean" @click-btn="cleanForm">Очистить</v-button>
         </div>
-        <a href="">Загрузить файл</a>
         <div class="task__form-answer" v-html="answer" />
+        <a>Показать решение</a>
       </form>
     </div>
   </section>
@@ -42,7 +48,7 @@ import InputsBlock from '../task/InputsBlock.vue';
 import VButton from "../../components/VButton.vue";
 import '../../assets/js/pathLength'
 import bruteForce from '../../assets/js/bruteForce.js'
-import {nearestNeighbor, nearestNeighbor2} from '../../assets/js/nearestNeighbor.js'
+import nearestNeighbor from '../../assets/js/nearestNeighbor.js'
 
 export default {
   components: { VButton, InputsBlock },
@@ -56,10 +62,11 @@ export default {
   data() {
     return {
       cityAmount: '',
-      //selectedMethod: 'Выберите метод',
       errorMessage: '',
       matrix: [],
       answer: '',
+      textareaIsVisible: false,
+      textareaText: ''
     };
   },
   computed: {
@@ -70,45 +77,70 @@ export default {
 
   watch: {
     cityAmount(newValue) {
-      if (newValue < 3 & newValue != '') {
+      if (newValue < 3 && newValue != '') {
         this.errorMessage = "Количество городов не должно быть меньше 3";
       }
       else {
         this.errorMessage = "";
       }
-      this.matrix = [];
-      for (let i = 0; i < newValue; i++) {
-        this.matrix[i] = [];
-        for (let j = 0; j < newValue; j++) {
-          this.matrix[i][j] = 0;
-        }
-      }
+      this.matrix = this.createArray(newValue);
     },
   },
   methods: {
-    getAnswer() {
-      if (this.cityAmount == '') {
-        this.errorMessage = 'Введите количество городов';
+    createArray(len) {
+      let array = [];
+      for (let i = 0; i < len; i++) {
+        array[i] = [];
+        for (let j = 0; j < len; j++) {
+          array[i][j] = 0;
+        }
       }
-      else if (this.selectedMethod === 'Выберите метод') {
-        this.errorMessage = 'Выберите метод';
+      return array;
+    },
+    readTextarea() {
+      let rows = this.textareaText.split('\n');
+      let array = this.createArray(rows.length);
+      for (let i = 0; i < rows.length; i++) {
+        array[i] = rows[i].split(';');
+      }
+      return array;
+    },
+    getAnswer() {
+      if (this.cityAmount == '' && this.textareaText == '') {
+        this.errorMessage = 'Введите количество городов или загрузите матрицу расстояний';
       }
       else {
-        this.errorMessage = '';
-        let result;
-        switch (this.selectedMethod) {
-          case 'Метод полного перебора':
-            result = bruteForce(this.matrix);
-            break;
-          case 'Метод ближайшего соседа':
-            result = nearestNeighbor2(this.matrix);
-            break;
-          case 'Метод ветвей и границ':
-            result = bruteForce(this.matrix);
-            break;
-        } 
-        this.answer = `Маршрут: ${result.path.join('->')}<br>Длина маршрута: ${result.distance}<br>Время работы алгоритма: ${result.time}мс`;
+        if (this.selectedMethod === 'Выберите метод') {
+          this.errorMessage = 'Выберите метод';
+        }
+        else {
+          if(this.textareaText !== '') {
+            this.matrix = this.readTextarea();
+          }
+          this.errorMessage = '';
+          let result;
+          switch (this.selectedMethod) {
+            case 'Метод полного перебора':
+              result = bruteForce(this.matrix);
+              break;
+            case 'Метод ближайшего соседа':
+              result = nearestNeighbor(this.matrix);
+              break;
+            case 'Метод ветвей и границ':
+              result = bruteForce(this.matrix);
+              break;
+          } 
+          this.answer = `Маршрут: ${result.path.join('->')}<br>Длина маршрута: ${result.distance}<br>Время работы алгоритма: ${result.time}мс`;
+        }
       }
+    },  
+    cleanForm() {
+      this.answer = '';
+      this.cityAmount = '';
+      this.textareaText = '';
+      this.errorMessage = '';
+      this.textareaIsVisible = false;
+      this.selectedMethod = 'Выберите метод';
     }
   },
 }
@@ -134,20 +166,24 @@ export default {
     &-data
       padding: 10px 0 0 30px
 
+    &-city-amount 
+      
+
+      input
+        width: 30px
+        margin: 0 10px 0 5px
+
     &-city-amount,
     &-method
       @extend %wrapper-row
       justify-content: start
-      margin-bottom: 20px
+      margin-bottom: 15px
 
     &-city-amount input,
-    &-method select
+    &-method select,
+    &-matrix textarea
       outline: none
       font-family: $font-stack
-
-    &-city-amount input
-      width: 30px
-      margin-left: 10px
 
     &-method select
       font-size: 15px
@@ -157,15 +193,26 @@ export default {
       font-size: 13px
       color: $red
 
+    &-matrix
+      textarea
+        width: 80%
+        height: 140px
+        resize: none
+
     &-matrix,
     &-matrix p
       margin-bottom: 10px    
     
-    &-btn-clear
+    &-btn-clean
       color: $blue
       background-color: $white
 
     &-answer
       margin-top: 10px
       font-size: 15px
+a
+  font-size: 15px
+  color: $gray
+  text-decoration: underline
+  cursor: pointer
 </style>

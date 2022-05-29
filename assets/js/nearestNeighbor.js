@@ -2,10 +2,29 @@ import pathLength from "./pathLength"
 
 /* Метод ближайшего соседа (nearestNeighbor)
 
-   - nearestNeighbor(distanceMatrix, begin = 1) 
+  - nearestNeighbor(distanceMatrix, begin = 1) 
 */
 
-function nearestNeighbor(distanceMatrix, begin = 1) {
+function nearestNeighbor(distanceMatrix) {
+  const start = performance.now();
+  let minDistance = Number.MAX_VALUE;
+  let bestPath = [];
+
+  for (let i = 1; i <= distanceMatrix.length; i++) {
+    let currentPath = nearestNeighborWithBegin(distanceMatrix, i);
+
+    if (currentPath.distance < minDistance) {
+      bestPath = currentPath.path;
+      minDistance = currentPath.distance;
+    }
+  };
+
+  const end = performance.now();
+
+  return { path: bestPath, distance: minDistance, time: end - start };
+}
+
+function nearestNeighborWithBegin(distanceMatrix, begin = 1) {
   const start = performance.now();
 
   let bestPath = [begin];
@@ -45,24 +64,4 @@ function existInArray(element, array) {
   return 1;
 }
 
-
-function nearestNeighbor2(distanceMatrix) {
-  const start = performance.now();
-  let minDistance = Number.MAX_VALUE;
-  let bestPath = [];
-
-  for (let i = 1; i <= distanceMatrix.length; i++) {
-    let currentPath = nearestNeighbor(distanceMatrix, i);
-
-    if (currentPath.distance < minDistance) {
-      bestPath = currentPath.path;
-      minDistance = currentPath.distance;
-    }
-  };
-
-  const end = performance.now();
-
-  return { path: bestPath, distance: minDistance, time: end - start };
-}
-
-export {nearestNeighbor, nearestNeighbor2}
+export default nearestNeighbor

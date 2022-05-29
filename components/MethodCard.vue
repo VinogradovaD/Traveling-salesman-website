@@ -45,7 +45,7 @@ export default {
     color: $black
   
   &__link
-    text-decoration: none
+    text-decoration: underline
     font-size: 12px
     color: $gray
 </style>
