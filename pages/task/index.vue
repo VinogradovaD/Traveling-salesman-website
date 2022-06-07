@@ -4,37 +4,46 @@
       <canvas class="task__form-canvas" width="320" height="320" />
       <form class="task__form-data" @submit.prevent="">
         <div class="task__form-city-amount">
-          <label>Количество городов:
-            <input @click="textareaIsVisible = false" v-model="cityAmount" type="number" min="3" max="20" />
+          <label
+            >Количество городов:
+            <input
+              @click="textareaIsVisible = false"
+              v-model="cityAmount"
+              type="number"
+              min="3"
+              max="20"
+            />
           </label>
-          <p>или&nbsp</p>
+          <p>или&nbsp;</p>
           <a v-on:click="textareaIsVisible = true"> Загрузить файл</a>
         </div>
         <div class="task__form-method">
           <select v-model="selectedMethod">
             <option hidden>Выберите метод</option>
-            <option 
-              v-for="(method, index) of methods" :key="index">
+            <option v-for="(method, index) of methods" :key="index">
               {{ method.name }}
             </option>
           </select>
         </div>
-        <div class="task__form-error-message"> {{ errorMessage }} </div>
+        <div class="task__form-error-message">{{ errorMessage }}</div>
         <div class="task__form-matrix">
           <p>Матрица расстояний:</p>
-          <inputs-block 
-            v-if="(cityAmount > 2 & !textareaIsVisible)" 
-            :cityAmount="cityAmount" 
+          <inputs-block
+            v-if="(cityAmount > 2) & !textareaIsVisible"
+            :cityAmount="cityAmount"
             :matrix="matrix"
           />
-          <textarea 
-            v-if="textareaIsVisible" 
+          <textarea
+            v-if="textareaIsVisible"
             v-model="textareaText"
-            placeholder="Вставьте скопированные данные из файла" />
+            placeholder="Вставьте скопированные данные из файла"
+          />
         </div>
         <div class="task__form-buttons">
           <v-button @click-btn="getAnswer">Посчитать</v-button>
-          <v-button class="task__form-btn-clean" @click-btn="cleanForm">Очистить</v-button>
+          <v-button class="task__form-btn-clean" @click-btn="cleanForm"
+            >Очистить</v-button
+          >
         </div>
         <div class="task__form-answer" v-html="answer" />
         <a>Показать решение</a>
@@ -44,11 +53,11 @@
 </template>
 
 <script>
-import InputsBlock from '../task/InputsBlock.vue';
+import InputsBlock from "../task/InputsBlock.vue";
 import VButton from "../../components/VButton.vue";
-import '../../assets/js/pathLength'
-import bruteForce from '../../assets/js/bruteForce.js'
-import nearestNeighbor from '../../assets/js/nearestNeighbor.js'
+import "../../assets/js/pathLength";
+import bruteForce from "../../assets/js/bruteForce.js";
+import nearestNeighbor from "../../assets/js/nearestNeighbor.js";
 
 export default {
   components: { VButton, InputsBlock },
@@ -56,31 +65,30 @@ export default {
   props: {
     selectedMethod: {
       type: String,
-      default: 'Выберите метод'
-    }
+      default: "Выберите метод",
+    },
   },
   data() {
     return {
-      cityAmount: '',
-      errorMessage: '',
+      cityAmount: "",
+      errorMessage: "",
       matrix: [],
-      answer: '',
+      answer: "",
       textareaIsVisible: false,
-      textareaText: ''
+      textareaText: "",
     };
   },
   computed: {
     methods() {
       return this.$store.state.methods.list;
     },
-  },  
+  },
 
   watch: {
     cityAmount(newValue) {
-      if (newValue < 3 && newValue != '') {
+      if (newValue < 3 && newValue != "") {
         this.errorMessage = "Количество городов не должно быть меньше 3";
-      }
-      else {
+      } else {
         this.errorMessage = "";
       }
       this.matrix = this.createArray(newValue);
@@ -92,58 +100,75 @@ export default {
       for (let i = 0; i < len; i++) {
         array[i] = [];
         for (let j = 0; j < len; j++) {
-          array[i][j] = 0;
+          if (i == j) array[i][j] = 0;
+          else array[i][j] = "";
         }
       }
       return array;
     },
+    emptyArray(array) {
+      for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array.length; j++) {
+          if (array[i][j] === '')
+            return true;
+        }
+      }
+      return false;
+    },
     readTextarea() {
-      let rows = this.textareaText.split('\n');
+      let rows = this.textareaText.split("\n");
       let array = this.createArray(rows.length);
       for (let i = 0; i < rows.length; i++) {
-        array[i] = rows[i].split(';');
+        array[i] = rows[i].split(";");
       }
       return array;
     },
     getAnswer() {
-      if (this.cityAmount == '' && this.textareaText == '') {
-        this.errorMessage = 'Введите количество городов или загрузите матрицу расстояний';
-      }
-      else {
-        if (this.selectedMethod === 'Выберите метод') {
-          this.errorMessage = 'Выберите метод';
-        }
-        else {
-          if(this.textareaText !== '') {
-            this.matrix = this.readTextarea();
+      if (this.cityAmount == "" && this.textareaText == "") {
+        this.errorMessage =
+          "Введите количество городов или загрузите матрицу расстояний";
+      } else {
+        if (this.selectedMethod === "Выберите метод") {
+          this.errorMessage = "Выберите метод";
+        } else {
+          if (this.emptyArray(this.matrix) == true) {
+            this.errorMessage = "Все поля должны быть заполнены";
+          } else {
+            if (this.textareaText !== "") {
+              this.matrix = this.readTextarea();
+            }
+            this.errorMessage = "";
+            let result;
+            switch (this.selectedMethod) {
+              case "Метод полного перебора":
+                result = bruteForce(this.matrix);
+                break;
+              case "Метод ближайшего соседа":
+                result = nearestNeighbor(this.matrix);
+                break;
+              case "Метод ветвей и границ":
+                result = bruteForce(this.matrix);
+                break;
+            }
+            this.answer = `Маршрут: ${result.path.join(
+              "->"
+            )}<br>Длина маршрута: ${
+              result.distance
+            }<br>Время работы алгоритма: ${result.time}мс`;
           }
-          this.errorMessage = '';
-          let result;
-          switch (this.selectedMethod) {
-            case 'Метод полного перебора':
-              result = bruteForce(this.matrix);
-              break;
-            case 'Метод ближайшего соседа':
-              result = nearestNeighbor(this.matrix);
-              break;
-            case 'Метод ветвей и границ':
-              result = bruteForce(this.matrix);
-              break;
-          } 
-          this.answer = `Маршрут: ${result.path.join('->')}<br>Длина маршрута: ${result.distance}<br>Время работы алгоритма: ${result.time}мс`;
         }
       }
-    },  
+    },
     cleanForm() {
-      this.answer = '';
-      this.cityAmount = '';
-      this.textareaText = '';
-      this.errorMessage = '';
+      this.answer = "";
+      this.cityAmount = "";
+      this.textareaText = "";
+      this.errorMessage = "";
       this.textareaIsVisible = false;
-      this.selectedMethod = 'Выберите метод';
-    }
+      this.selectedMethod = "Выберите метод";
+    },
   },
-}
+};
 </script>
 
 <style lang="sass" scoped>
@@ -166,8 +191,8 @@ export default {
     &-data
       padding: 10px 0 0 30px
 
-    &-city-amount 
-      
+    &-city-amount
+
 
       input
         width: 30px
@@ -201,8 +226,8 @@ export default {
 
     &-matrix,
     &-matrix p
-      margin-bottom: 10px    
-    
+      margin-bottom: 10px
+
     &-btn-clean
       color: $blue
       background-color: $white

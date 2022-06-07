@@ -1,7 +1,7 @@
 <template>
   <nav>
     <nuxt-link to="/">Главная</nuxt-link>
-    <nuxt-link to="/about">О задаче</nuxt-link>
+    <nuxt-link to="/about">О методах</nuxt-link>
     <nuxt-link to="/task">Решить онлайн</nuxt-link>
   </nav>
 </template>

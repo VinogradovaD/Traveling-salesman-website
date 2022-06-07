@@ -1,10 +1,5 @@
 import pathLength from "./pathLength"
 
-/* Метод ближайшего соседа (nearestNeighbor)
-
-  - nearestNeighbor(distanceMatrix, begin = 1) 
-*/
-
 function nearestNeighbor(distanceMatrix) {
   const start = performance.now();
   let minDistance = Number.MAX_VALUE;
@@ -25,8 +20,6 @@ function nearestNeighbor(distanceMatrix) {
 }
 
 function nearestNeighborWithBegin(distanceMatrix, begin = 1) {
-  const start = performance.now();
-
   let bestPath = [begin];
 
   for (let i = 0; i < distanceMatrix.length - 1; i++) {
@@ -36,9 +29,8 @@ function nearestNeighborWithBegin(distanceMatrix, begin = 1) {
 
   bestPath.push(begin);
   const distance = pathLength(bestPath, distanceMatrix);
-  const end = performance.now();
-
-  return { path: bestPath, distance, time: end - start };
+  
+  return { path: bestPath, distance };
 }
 
 function nearestCity(currentCity, currentPath, distanceMatrix) {
