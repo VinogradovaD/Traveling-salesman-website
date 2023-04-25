@@ -6,7 +6,7 @@ body {
   background: #F8F8F8;
 }
 
-h1, h2, h3, a, p, button, .choose-method select {
+.choose-method select, button, p, a, h3, h2, h1 {
   font-family: "Montserrat", sans-serif;
   color: black;
 }
@@ -46,8 +46,12 @@ p {
   justify-content: space-between;
 }
 
-nav {
+.nav {
   padding-top: 50px;
+}
+
+.red-text {
+  color: red;
 }
 
 #about {
@@ -73,7 +77,7 @@ nav {
 
 .main-page-method {
   text-align: center;
-  width: 200px;
+  width: 30%;
   background: white;
   border-radius: 10px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
@@ -86,7 +90,6 @@ nav {
   width: 150px;
   margin-bottom: 20px;
 }
-
 .main-page-method h3 {
   font-size: 14px;
   width: 160px;
@@ -151,7 +154,6 @@ button:hover::after {
   margin-top: 20px;
   margin-bottom: 50px;
 }
-
 .method p {
   margin-top: 50px;
   margin-bottom: 20px;
@@ -195,7 +197,7 @@ button:hover::after {
   width: 20px;
 }
 
-input[type='number'] {
+input[type=number] {
   -moz-appearance: textfield;
 }
 
@@ -226,7 +228,6 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: row;
 }
-
 #matrix-inputs input {
   width: 17px;
   margin: 3px;
@@ -244,10 +245,6 @@ input::-webkit-inner-spin-button {
 
 .blue-input {
   background-color: #9ACCD5;
-}
-
-.red-text {
-  color: red;
 }
 
 footer {
@@ -273,9 +270,6 @@ footer p {
   .main-page-method img {
     width: 100px;
   }
-  .main-page-method {
-    width: 190px;
-  }
   .method p {
     width: 400px;
     margin-top: 30px;
@@ -290,7 +284,6 @@ footer p {
     font-size: 20px;
   }
 }
-
 @media screen and (max-width: 992px) {
   .container {
     width: 600px;
@@ -306,9 +299,6 @@ footer p {
     font-size: 10px;
     width: 110px;
   }
-  .main-page-method {
-    width: 190px;
-  }
   .nav a {
     font-size: 12px;
   }
@@ -320,9 +310,6 @@ footer p {
   }
   .about-text p {
     font-size: 12px;
-  }
-  .main-page-method {
-    width: 140px;
   }
   .main-page-method img {
     width: 80px;
@@ -346,26 +333,25 @@ footer p {
     width: 90%;
   }
 }
-
 @media screen and (max-width: 768px) {
   .container {
-    width: 500px;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
   }
-  .wrapper-row {
-    flex-direction: column;
-  }
+
   .task-form {
     flex-direction: column-reverse;
   }
+
   .data .wrapper-row {
     flex-direction: row;
   }
-  .nav {
-    flex-direction: row;
-  }
+
   #about {
     margin-bottom: 30px;
   }
+
   .about-text,
   .map-img,
   .main-page-method,
@@ -374,65 +360,92 @@ footer p {
   .method button {
     margin: 0 auto;
   }
+
   .map-img {
     margin-top: 20px;
   }
+
   .method {
     text-align: center;
   }
+
   .align-right {
     padding-right: 0;
     text-align: center;
   }
+
   .method img {
     margin-top: 20px;
     margin-bottom: 10px;
   }
+
   .method p {
     text-align: center;
     margin-bottom: 20px;
   }
-  .main-page-method {
-    margin-bottom: 10px;
-    width: 200px;
-  }
+
   .main-page-method h3 {
     font-size: 14px;
     width: 150px;
   }
+
   button {
     width: 140px;
   }
 }
-
 @media screen and (max-width: 576px) {
   .container,
   .about-text p {
-    width: 300px;
+    width: 400px;
   }
+
   .choose-method select {
     width: 190px;
   }
+
   button {
     width: 110px;
   }
+
   h1 {
     font-size: 22px;
   }
+
   .method {
     width: 95%;
   }
+
   .method p {
     font-size: 12px;
     width: 280px;
   }
+
   .method img {
     width: 150px;
   }
+
   h2 {
     font-size: 15px;
   }
+
   #methods {
     margin-top: 0;
+  }
+
+  .wrapper-row {
+    flex-direction: column;
+  }
+
+  .main-page-method {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  .main-page-method:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .nav {
+    flex-direction: row;
   }
 }

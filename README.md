@@ -4,7 +4,7 @@
 
 ### Использованные технологии:
 * HTML
-* Sass
+* CSS
 * JavaScript
 * Arbor js
 
